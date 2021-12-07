@@ -25,7 +25,20 @@
 		$thumbnails = "tims";
 		$current_date = date('d-m');
 
-		$files = glob($photos . DIRECTORY_SEPARATOR . '*.{jpg,jpeg,JPG,JPEG}', GLOB_BRACE);
+		function rsearch($dir, $pattern_array) {
+			$return = array();
+			$iti = new RecursiveDirectoryIterator($dir, FilesystemIterator::SKIP_DOTS);
+			foreach(new RecursiveIteratorIterator($iti) as $file){
+				if (in_array(strtolower(array_pop(explode('.', $file))), $pattern_array)){
+					$return[] = $file;
+				}
+			}
+			return $return;
+		}
+
+		$files = rsearch($photos, array('jpeg', 'JPEG'));
+
+		// $files = glob($photos . DIRECTORY_SEPARATOR . '*.{jpg,jpeg,JPG,JPEG}', GLOB_BRACE);
 		foreach ($files as $file) {
 			$tim = $photos . DIRECTORY_SEPARATOR . $thumbnails . DIRECTORY_SEPARATOR . basename($file);
 			$filepath = pathinfo($file);
