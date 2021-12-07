@@ -33,7 +33,7 @@
 			$dt = $exif['DateTimeOriginal'];
 			$dm = date("d-m", strtotime($dt));
 			if ($dm == $current_date) {
-				echo "<h2>" . $exif['EXIF']['DateTimeOriginal'] . "</h2>";
+				echo "<h2>" . $exif['DateTimeOriginal'] . "</h2>";
 				echo '<p><img src="' . $tim . '" alt="" width="800"/></p>';
 				echo '<p>' . $exif['COMMENT']['0'] . '</p>';
 			}
