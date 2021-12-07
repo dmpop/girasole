@@ -26,9 +26,7 @@
 		$current_date = date('d-m');
 
 		$files = glob($photos . DIRECTORY_SEPARATOR . '*.{jpg,jpeg,JPG,JPEG}', GLOB_BRACE);
-		$fileCount = count($files);
-		for ($i = ($fileCount - 1); $i >= 0; $i--) {
-			$file = $files[$i];
+		foreach ($files as $file) {
 			$tim = $photos . DIRECTORY_SEPARATOR . $thumbnails . DIRECTORY_SEPARATOR . basename($file);
 			$filepath = pathinfo($file);
 			$exif = exif_read_data($file);
