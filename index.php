@@ -17,7 +17,8 @@
 
 <body>
 	<div class="c">
-		<h1>Memories</h1>
+		<img style="height: 3em; margin-right: 0.5em;" src="favicon.svg" alt="logo" />
+		<h1 style="margin-left: 0.19em; letter-spacing: 0.3em; margin-top: 0em; color: #5f8dd3;">Memories</h1>
 		<hr style="margin-bottom: 1.5em;">
 
 		<?php
@@ -25,11 +26,12 @@
 		$thumbnails = "tims";
 		$current_date = date('d-m');
 
-		function rsearch($dir, $pattern_array) {
+		function rsearch($dir, $pattern_array)
+		{
 			$return = array();
 			$iti = new RecursiveDirectoryIterator($dir, FilesystemIterator::SKIP_DOTS);
-			foreach(new RecursiveIteratorIterator($iti) as $file){
-				if (in_array(strtolower(array_pop(explode('.', $file))), $pattern_array)){
+			foreach (new RecursiveIteratorIterator($iti) as $file) {
+				if (in_array(strtolower(array_pop(explode('.', $file))), $pattern_array)) {
 					$return[] = $file;
 				}
 			}

@@ -34,7 +34,7 @@
 
 .card:focus, hr {
     outline: 0;
-    border: 2px dashed #fa0;
+    border: 1px dashed #5f8dd3;
 }
 
 .card, pre {
@@ -64,58 +64,58 @@ img {
     max-width: 60em;
     padding: 1em;
     margin: auto;
-    font: 1em/1.6 'Barlow-Light';
+    font: 1em/1.6 'Barlow';
     color: #fff;
     text-align: center;
 }
 
 h6 {
     font-size: 1em;
-    font-family: 'Barlow-Medium';
+    font-family: 'Barlow';
 }
 
 h5 {
     font-size: 1em;
-    font-family: 'Barlow-Medium';
+    font-family: 'Barlow';
 }
 
 h3 {
     text-transform: uppercase;
     letter-spacing: 0.1em;
     font-size: 1.1em;
-    font-family: 'Barlow-Medium';
+    font-family: 'Barlow';
 }
 
 h4 {
     font-size: 1em;
-    font-family: 'Barlow-Medium';
+    font-family: 'Barlow';
 }
 
 h2 {
     text-transform: uppercase;
     letter-spacing: 0.1em;
     font-size: 1.5em;
-    font-family: 'Barlow-Medium';
-    color: #fa0;
+    font-family: 'Barlow';
+    color: #5f8dd3;
 }
 
 h1 {
     text-transform: uppercase;
     letter-spacing: 0.1em;
     font-size: 2em;
-    font-family: 'Barlow-Medium';
-    color: #fa0;
+    font-family: 'Barlow';
+    color: #5f8dd3;
 }
 
 a {
-    color: #fa0;
+    color: #5f8dd3;
     text-decoration: none;
 }
 
 .btn.primary {
     color: #fff;
-    background: #fa0;
-    border: solid #fa0;
+    background: #5f8dd3;
+    border: solid #5f8dd3;
 }
 
 td, th {
@@ -131,9 +131,9 @@ td, th {
     letter-spacing: 0.1em;
     text-transform: uppercase;
     background: #fff;
-    border: solid #fa0;
+    border: solid #5f8dd3;
     font-size: 0.7em;
-    font-family: 'Barlow-Medium';
+    font-family: 'Barlow';
 }
 
 body {
@@ -141,35 +141,16 @@ body {
 }
 
 strong {
-    font-family: "Barlow-Medium", sans-serif;
+    font-family: "Barlow", sans-serif;
 }
 
 em {
-    font-family: "Barlow-LightItalic", sans-serif;
+    font-family: "Barlow", sans-serif;
     font-style: italic;
 }
 
 @font-face {
-    font-family: 'Barlow-Light';
-    font-weight: 300;
-    src: url('woff/Barlow-Light.woff2') format('woff2');
-}
-
-@font-face {
-    font-family: 'Barlow-Regular';
+    font-family: 'Barlow';
     font-weight: 400;
     src: url('woff/Barlow-Regular.woff2') format('woff2');
-}
-
-@font-face {
-    font-family: 'Barlow-Medium';
-    font-weight: 500;
-    src: url('woff/Barlow-Medium.woff2') format('woff2');
-}
-
-@font-face {
-    font-family: 'Barlow-LightItalic';
-    font-weight: 300;
-    font-style: italic;
-    src: url('woff/Barlow-LightItalic.woff2') format('woff2');
 }
