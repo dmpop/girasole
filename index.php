@@ -1,3 +1,5 @@
+<?php error_reporting(E_ALL ^ E_NOTICE); ?>
+
 <!DOCTYPE html>
 <html>
 
@@ -22,34 +24,40 @@
 		<hr style="margin-bottom: 1.5em;">
 
 		<?php
-		$photos = "../photos";
-		$thumbnails = "tims";
+		$photos = "photos";
+		$tims = "tims";
 		$current_date = date('d-m');
 
-		function rsearch($dir, $pattern_array)
+		function createTim($original, $tim, $timWidth)
 		{
-			$return = array();
-			$iti = new RecursiveDirectoryIterator($dir, FilesystemIterator::SKIP_DOTS);
-			foreach (new RecursiveIteratorIterator($iti) as $file) {
-				if (in_array(strtolower(array_pop(explode('.', $file))), $pattern_array)) {
-					$return[] = $file;
-				}
-			}
-			return $return;
+			$img = @imagecreatefromjpeg($original);
+			if (!$img) return false;
+			$width = imagesx($img);
+			$height = imagesy($img);
+			$new_width	= $timWidth;
+			$new_height = floor($height * ($timWidth / $width));
+			$tmp_img = imagecreatetruecolor($new_width, $new_height);
+			imagecopyresampled($tmp_img, $img, 0, 0, 0, 0, $new_width, $new_height, $width, $height);
+			$ok = @imagejpeg($tmp_img, $tim);
+			imagedestroy($img);
+			imagedestroy($tmp_img);
+			return $ok;
 		}
+		if (!file_exists($tims)) {
+			mkdir($tims, 0755, true);
+		}
+		array_map('unlink', glob("$tims/*.*"));
 
-		$files = rsearch($photos, array('jpeg', 'JPEG'));
-
-		// $files = glob($photos . DIRECTORY_SEPARATOR . '*.{jpg,jpeg,JPG,JPEG}', GLOB_BRACE);
+		$files = glob($photos . DIRECTORY_SEPARATOR . '*.{jpg,jpeg,JPG,JPEG}', GLOB_BRACE);
 		foreach ($files as $file) {
-			$tim = $photos . DIRECTORY_SEPARATOR . $thumbnails . DIRECTORY_SEPARATOR . basename($file);
-			$filepath = pathinfo($file);
-			$exif = exif_read_data($file);
-			$dt = $exif['DateTimeOriginal'];
-			$dm = date("d-m", strtotime($dt));
-			if (file_exists($tim) && $dm == $current_date) {
+			$f = $photos . DIRECTORY_SEPARATOR . basename($file);
+			$exif = @exif_read_data($f);
+			$dm = date("d-m", strtotime($exif['DateTimeOriginal']));
+			if ($current_date == $dm) {
+				$t = $tims . DIRECTORY_SEPARATOR . basename($file);
+				createTim($f, $t, 800);
 				echo "<h2>" . $exif['DateTimeOriginal'] . "</h2>";
-				echo '<p><img src="' . $tim . '" alt="" width="800"/></p>';
+				echo '<p><img src="' . $t . '" alt="" /></p>';
 				echo '<p>' . $exif['COMMENT']['0'] . '</p>';
 			}
 		}
