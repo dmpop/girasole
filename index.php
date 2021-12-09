@@ -43,22 +43,58 @@
 			imagedestroy($tmp_img);
 			return $ok;
 		}
-		if (!file_exists($tims)) {
-			mkdir($tims, 0755, true);
-		}
-		array_map('unlink', glob("$tims/*.*"));
 
-		$files = glob($photos . DIRECTORY_SEPARATOR . '*.{jpg,jpeg,JPG,JPEG}', GLOB_BRACE);
-		foreach ($files as $file) {
-			$f = $photos . DIRECTORY_SEPARATOR . basename($file);
-			$exif = @exif_read_data($f);
-			$dm = date("d-m", strtotime($exif['DateTimeOriginal']));
-			if ($current_date == $dm) {
-				$t = $tims . DIRECTORY_SEPARATOR . basename($file);
-				createTim($f, $t, 800);
-				echo "<h2>" . $exif['DateTimeOriginal'] . "</h2>";
-				echo '<p><img src="' . $t . '" alt="" /></p>';
-				echo '<p>' . $exif['COMMENT']['0'] . '</p>';
+		function rsearch($dir, $tims, $pattern_array)
+		{
+			$return = array();
+			$iti = new RecursiveDirectoryIterator($dir, FilesystemIterator::SKIP_DOTS);
+			foreach (new RecursiveIteratorIterator($iti) as $file => $details) {
+				if (!is_file($iti->getBasename()) && ($iti->getBasename() != $tims)) {
+					$file_ext = pathinfo($file, PATHINFO_EXTENSION);
+					if (in_array(strtolower($file_ext), $pattern_array)) {
+						$return[] = $file;
+					}
+				}
+			}
+			return $return;
+		}
+
+		if (isset($_COOKIE['memories'])) {
+			$files = glob($tims . DIRECTORY_SEPARATOR . '*.{jpg,jpeg,JPG,JPEG}', GLOB_BRACE);
+			foreach ($files as $tim) {
+				//$tim = $tims . DIRECTORY_SEPARATOR . basename($file);
+				$h2 = file($tim . ".txt")[0];
+				$comment = file($tim . ".txt")[1];
+				echo "<h2>" . $h2 . "</h2>";
+				echo '<p><img src="' . $tim . '" alt="" /></p>';
+				echo '<p>' . $comment . '</p>';
+			}
+		} else {
+
+			if (!file_exists($tims)) {
+				mkdir($tims, 0755, true);
+			}
+
+			array_map('unlink', glob("$tims/*.*"));
+
+			$files = rsearch($photos, $tims, array('jpg', 'jpeg'));
+			foreach ($files as $file) {
+				$exif = @exif_read_data($file);
+				$dm = date("d-m", strtotime($exif['DateTimeOriginal']));
+				if ($current_date == $dm) {
+					$tim = $tims . DIRECTORY_SEPARATOR . basename($file);
+					createTim($file, $tim, 800);
+					file_put_contents($tims . DIRECTORY_SEPARATOR . basename($tim) . ".txt", $exif['DateTimeOriginal'] . "\n" . $exif['COMMENT']['0'], FILE_APPEND | LOCK_EX);
+					echo "<h2>" . $exif['DateTimeOriginal'] . "</h2>";
+					echo '<p><img src="' . $tim . '" alt="" /></p>';
+					if (!empty($exif['COMMENT']['0'])) {
+						echo '<p>' . $exif['COMMENT']['0'] . '</p>';
+					}
+				}
+			}
+			setcookie('memories', 1, strtotime('today 23:59'), '/');
+			if (count(glob("$tims/*")) === 0) {
+				echo '<p>No photos from the past today :-( </p>';
 			}
 		}
 		?>
