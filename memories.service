@@ -1,0 +1,11 @@
+[Unit]
+Description=Memories
+Wants=syslog.service
+
+[Service]
+Restart=always
+ExecStart=/usr/bin/php -S 0.0.0.0:7000 -t /path/to/memories
+ExecStop=/usr/bin/kill -HUP $MAINPID
+
+[Install]
+WantedBy=multi-user.target

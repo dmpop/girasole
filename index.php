@@ -1,4 +1,7 @@
-<?php error_reporting(E_ALL ^ E_NOTICE); ?>
+<?php
+error_reporting(E_ALL ^ E_NOTICE);
+ini_set('max_execution_time', '3600');
+?>
 
 <!DOCTYPE html>
 <html>
@@ -80,6 +83,7 @@
 			}
 
 			array_map('unlink', glob("$tims/*.*"));
+			setcookie('memories', 1, strtotime('today 23:59'), '/');
 
 			$files = rsearch($photos, $tims, array('jpg', 'jpeg'));
 			foreach ($files as $file) {
@@ -96,7 +100,6 @@
 					}
 				}
 			}
-			setcookie('memories', 1, strtotime('today 23:59'), '/');
 			if (count(glob("$tims/*")) === 0) {
 				echo '<p>No photos from the past today :-( </p>';
 			}
