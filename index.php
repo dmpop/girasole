@@ -1,6 +1,8 @@
 <?php
 error_reporting(E_ALL ^ E_NOTICE);
 ini_set('max_execution_time', '3600');
+$photos = "photos";
+$tims = "tims";
 ?>
 
 <!DOCTYPE html>
@@ -27,8 +29,6 @@ ini_set('max_execution_time', '3600');
 		<hr style="margin-bottom: 1.5em;">
 
 		<?php
-		$photos = "photos";
-		$tims = "tims";
 		$current_date = date('d-m');
 
 		function createTim($original, $tim, $timWidth)
