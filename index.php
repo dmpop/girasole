@@ -62,6 +62,11 @@ ini_set('max_execution_time', '3600');
 			return $return;
 		}
 
+		if (!file_exists($photos)) {
+			echo "<h2 style='color: red;'>The <u>$photos</u> directory is not found</h2>";
+			exit;
+		}
+
 		if (isset($_COOKIE['memories'])) {
 			$files = glob($tims . DIRECTORY_SEPARATOR . '*.{jpg,jpeg,JPG,JPEG}', GLOB_BRACE);
 			foreach ($files as $tim) {
