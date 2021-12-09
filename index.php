@@ -1,8 +1,9 @@
 <?php
 error_reporting(E_ALL ^ E_NOTICE);
 ini_set('max_execution_time', '3600');
-$photos = "photos";
-$tims = "tims";
+$photos = "photos"; // Relative or absolute path to the photo library root
+$tims = "tims"; // Directory to exclude from search (useful for excluding thumbnails)
+$ext = array('jpg', 'jpeg'); // File types to search
 ?>
 
 <!DOCTYPE html>
@@ -90,7 +91,7 @@ $tims = "tims";
 			array_map('unlink', glob("$tims/*.*"));
 			setcookie('memories', 1, strtotime('today 23:59'), '/');
 
-			$files = rsearch($photos, $tims, array('jpg', 'jpeg'));
+			$files = rsearch($photos, $tims, $ext);
 			foreach ($files as $file) {
 				$exif = @exif_read_data($file);
 				$dm = date("d-m", strtotime($exif['DateTimeOriginal']));
