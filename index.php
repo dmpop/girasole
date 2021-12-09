@@ -62,12 +62,16 @@
 		if (isset($_COOKIE['memories'])) {
 			$files = glob($tims . DIRECTORY_SEPARATOR . '*.{jpg,jpeg,JPG,JPEG}', GLOB_BRACE);
 			foreach ($files as $tim) {
-				//$tim = $tims . DIRECTORY_SEPARATOR . basename($file);
-				$h2 = file($tim . ".txt")[0];
-				$comment = file($tim . ".txt")[1];
-				echo "<h2>" . $h2 . "</h2>";
+				$txt = $tim . ".txt";
+				if (file_exists($txt)) {
+					$h2 = file($txt)[0];
+					echo "<h2>" . $h2 . "</h2>";
+				}
 				echo '<p><img src="' . $tim . '" alt="" /></p>';
-				echo '<p>' . $comment . '</p>';
+				if (file_exists($txt)) {
+					$comment = file($txt)[1];
+					echo '<p style="margin-bottom: 2em;">' . $comment . '</p>';
+				}
 			}
 		} else {
 
@@ -84,11 +88,11 @@
 				if ($current_date == $dm) {
 					$tim = $tims . DIRECTORY_SEPARATOR . basename($file);
 					createTim($file, $tim, 800);
-					file_put_contents($tims . DIRECTORY_SEPARATOR . basename($tim) . ".txt", $exif['DateTimeOriginal'] . "\n" . $exif['COMMENT']['0'], FILE_APPEND | LOCK_EX);
-					echo "<h2>" . $exif['DateTimeOriginal'] . "</h2>";
+					file_put_contents($tims . DIRECTORY_SEPARATOR . basename($tim) . ".txt", date("l, M d Y, G:s", strtotime($exif['DateTimeOriginal'])) . "\n" . $exif['COMMENT']['0'], FILE_APPEND | LOCK_EX);
+					echo "<h2>" . date("l, M d Y, G:s", strtotime($exif['DateTimeOriginal'])) . "</h2>";
 					echo '<p><img src="' . $tim . '" alt="" /></p>';
 					if (!empty($exif['COMMENT']['0'])) {
-						echo '<p>' . $exif['COMMENT']['0'] . '</p>';
+						echo '<p style="margin-bottom: 2em;">' . $exif['COMMENT']['0'] . '</p>';
 					}
 				}
 			}
