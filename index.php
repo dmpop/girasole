@@ -1,7 +1,7 @@
 <?php
 error_reporting(E_ALL ^ E_NOTICE);
 ini_set('max_execution_time', '3600');
-$photos = "photos"; // Relative or absolute path to the photo library root
+$library = "photos"; // Relative or absolute path to the photo library root
 $tims = "tims"; // Directory to exclude from search (useful for excluding thumbnails)
 $ext = array('jpg', 'jpeg'); // File types to search
 ?>
@@ -63,8 +63,8 @@ $ext = array('jpg', 'jpeg'); // File types to search
 			return $return;
 		}
 
-		if (!file_exists($photos)) {
-			die("<h2 style='color: red;'>The <u>$photos</u> directory is not found</h2>");
+		if (!file_exists($library)) {
+			die("<h2 style='color: red;'>The <u>$library</u> directory is not found</h2>");
 		}
 		if (!extension_loaded('exif')) {
 			die("<h2 style='color: red;'>The exif PHP extension is missing</h2>");
@@ -93,7 +93,7 @@ $ext = array('jpg', 'jpeg'); // File types to search
 			array_map('unlink', glob("$tims/*.*"));
 			setcookie('memories', 1, strtotime('today 23:59'), '/');
 
-			$files = rsearch($photos, $tims, $ext);
+			$files = rsearch($library, $tims, $ext);
 			foreach ($files as $file) {
 				$exif = @exif_read_data($file);
 				$dm = date("d-m", strtotime($exif['DateTimeOriginal']));
@@ -109,7 +109,7 @@ $ext = array('jpg', 'jpeg'); // File types to search
 				}
 			}
 			if (count(glob("$tims/*")) === 0) {
-				echo '<p>No photos from the past today :-( </p>';
+				echo '<h2>No photos from the past today :-( </h2>';
 			}
 		}
 		?>
