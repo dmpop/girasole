@@ -64,8 +64,10 @@ $ext = array('jpg', 'jpeg'); // File types to search
 		}
 
 		if (!file_exists($photos)) {
-			echo "<h2 style='color: red;'>The <u>$photos</u> directory is not found</h2>";
-			exit;
+			die("<h2 style='color: red;'>The <u>$photos</u> directory is not found</h2>");
+		}
+		if (!extension_loaded('exif')) {
+			die("<h2 style='color: red;'>The exif PHP extension is missing</h2>");
 		}
 
 		if (isset($_COOKIE['memories'])) {
