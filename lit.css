@@ -149,6 +149,19 @@ em {
     font-style: italic;
 }
 
+div.footer {
+    line-height: 2.0em;
+    text-align: center;
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.9em;
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+    height: 2em;
+    width: 100%;
+    background: #3973ac;
+}
+
 @font-face {
     font-family: 'Barlow';
     font-weight: 400;

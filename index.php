@@ -115,7 +115,7 @@ $ext = array('jpg', 'jpeg'); // File types to search
 		?>
 
 		<hr style="margin-top: 1em;">
-		<p>This is <a href="https://github.com/dmpop/memories">Memories</a>
+		<div class="footer">This is <a href="https://github.com/dmpop/memories">Memories</a>. Read the <a href="https://gumroad.com/l/linux-photography">Linux Photography</a> book.</div>
 	</div>
 </body>
 
