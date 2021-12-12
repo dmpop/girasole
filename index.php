@@ -100,8 +100,8 @@ $ext = array('jpg', 'jpeg'); // File types to search
 				if ($current_date == $dm) {
 					$tim = $tims . DIRECTORY_SEPARATOR . basename($file);
 					createTim($file, $tim, 800);
-					file_put_contents($tims . DIRECTORY_SEPARATOR . basename($tim) . ".txt", date("l, M d Y, G:s", strtotime($exif['DateTimeOriginal'])) . "\n" . $exif['COMMENT']['0'], FILE_APPEND | LOCK_EX);
-					echo "<h2>" . date("l, M d Y, G:s", strtotime($exif['DateTimeOriginal'])) . "</h2>";
+					file_put_contents($tims . DIRECTORY_SEPARATOR . basename($tim) . ".txt", date("l, Y, G:s", strtotime($exif['DateTimeOriginal'])) . "\n" . $exif['COMMENT']['0'], FILE_APPEND | LOCK_EX);
+					echo "<h2>" . date("l, Y, G:s", strtotime($exif['DateTimeOriginal'])) . "</h2>";
 					echo '<p><img src="' . $tim . '" alt="" /></p>';
 					if (!empty($exif['COMMENT']['0'])) {
 						echo '<p style="margin-bottom: 2em;">' . $exif['COMMENT']['0'] . '</p>';
