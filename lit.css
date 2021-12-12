@@ -157,9 +157,10 @@ div.footer {
     position: fixed;
     left: 0px;
     bottom: 0px;
+    margin-bottom: 0em;
     height: 2em;
     width: 100%;
-    background: #3973ac;
+    background: #3f3f3f;
 }
 
 @font-face {
