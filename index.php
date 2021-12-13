@@ -63,11 +63,14 @@ $ext = array('jpg', 'jpeg'); // File types to search
 			return $return;
 		}
 
+		if (!extension_loaded('exif')) {
+			die("<h2 style='color: red;'>The exif PHP extension is missing</h2>");
+		}
 		if (!file_exists($library)) {
 			die("<h2 style='color: red;'>The <u>$library</u> directory is not found</h2>");
 		}
-		if (!extension_loaded('exif')) {
-			die("<h2 style='color: red;'>The exif PHP extension is missing</h2>");
+		if (!file_exists($tims)) {
+			mkdir($tims, 0755, true);
 		}
 
 		if (isset($_COOKIE['memories'])) {
@@ -85,10 +88,6 @@ $ext = array('jpg', 'jpeg'); // File types to search
 				}
 			}
 		} else {
-
-			if (!file_exists($tims)) {
-				mkdir($tims, 0755, true);
-			}
 
 			array_map('unlink', glob("$tims/*.*"));
 			setcookie('memories', 1, strtotime('today 23:59'), '/');
@@ -108,9 +107,9 @@ $ext = array('jpg', 'jpeg'); // File types to search
 					}
 				}
 			}
-			if (count(glob("$tims/*")) === 0) {
-				echo '<h2>No photos from the past today :-( </h2>';
-			}
+		}
+		if (count(glob("$tims/*")) === 0) {
+			echo '<h2>No photos from the past today :-( </h2>';
 		}
 		?>
 
