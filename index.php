@@ -63,17 +63,8 @@ $ext = array('jpg', 'jpeg'); // File types to search
 			return $return;
 		}
 
-		if (!extension_loaded('exif')) {
-			die("<h2 style='color: red;'>The exif PHP extension is missing</h2>");
-		}
-		if (!file_exists($library)) {
-			die("<h2 style='color: red;'>The <u>$library</u> directory is not found</h2>");
-		}
-		if (!file_exists($tims)) {
-			mkdir($tims, 0755, true);
-		}
-
-		if (isset($_COOKIE['memories'])) {
+		function showTims($tims)
+		{
 			$files = glob($tims . DIRECTORY_SEPARATOR . '*.{jpg,jpeg,JPG,JPEG}', GLOB_BRACE);
 			foreach ($files as $tim) {
 				$txt = $tim . ".txt";
@@ -87,6 +78,20 @@ $ext = array('jpg', 'jpeg'); // File types to search
 					echo '<p style="margin-bottom: 2em;">' . $comment . '</p>';
 				}
 			}
+		}
+
+		if (!extension_loaded('exif')) {
+			die("<h2 style='color: red;'>The exif PHP extension is missing</h2>");
+		}
+		if (!file_exists($library)) {
+			die("<h2 style='color: red;'>The <u>$library</u> directory is not found</h2>");
+		}
+		if (!file_exists($tims)) {
+			mkdir($tims, 0755, true);
+		}
+
+		if (isset($_COOKIE['memories'])) {
+			showTims($tims);
 		} else {
 
 			array_map('unlink', glob("$tims/*.*"));
@@ -100,13 +105,9 @@ $ext = array('jpg', 'jpeg'); // File types to search
 					$tim = $tims . DIRECTORY_SEPARATOR . basename($file);
 					createTim($file, $tim, 800);
 					file_put_contents($tims . DIRECTORY_SEPARATOR . basename($tim) . ".txt", date("l, Y, G:s", strtotime($exif['DateTimeOriginal'])) . "\n" . $exif['COMMENT']['0'], FILE_APPEND | LOCK_EX);
-					echo "<h2>" . date("l, Y, G:s", strtotime($exif['DateTimeOriginal'])) . "</h2>";
-					echo '<p><img src="' . $tim . '" alt="" /></p>';
-					if (!empty($exif['COMMENT']['0'])) {
-						echo '<p style="margin-bottom: 2em;">' . $exif['COMMENT']['0'] . '</p>';
-					}
 				}
 			}
+			showTims($tims);
 		}
 		if (count(glob("$tims/*")) === 0) {
 			echo '<h2>No photos from the past today :-( </h2>';
