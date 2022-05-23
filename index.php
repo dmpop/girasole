@@ -2,7 +2,8 @@
 error_reporting(E_ALL ^ E_NOTICE);
 ini_set('max_execution_time', '3600');
 $library = "photos"; // Relative or absolute path to the photo library root
-$tims = "tims"; // Directory to exclude from search (useful for excluding thumbnails)
+$tims = "tims"; // Directory for saving tims
+$excluded = "tims"; // Directory to exclude from search (useful for excluding thumbnails)
 $ext = array('jpg', 'jpeg'); // File types to search
 ?>
 
@@ -48,12 +49,12 @@ $ext = array('jpg', 'jpeg'); // File types to search
 			return $ok;
 		}
 
-		function rsearch($dir, $tims, $pattern_array)
+		function rsearch($dir, $excluded, $pattern_array)
 		{
 			$return = array();
 			$iti = new RecursiveDirectoryIterator($dir, FilesystemIterator::SKIP_DOTS);
 			foreach (new RecursiveIteratorIterator($iti) as $file => $details) {
-				if (!is_file($iti->getBasename()) && ($iti->getBasename() != $tims)) {
+				if (!is_file($iti->getBasename()) && ($iti->getBasename() != $excluded)) {
 					$file_ext = pathinfo($file, PATHINFO_EXTENSION);
 					if (in_array(strtolower($file_ext), $pattern_array)) {
 						$return[] = $file;
