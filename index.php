@@ -84,19 +84,17 @@ $ext = array('jpg', 'jpeg'); // File types to search
 			die("<div class='msg'>⚠️ The PHP exif extension is missing</div>");
 		}
 		if (!file_exists($library)) {
-			die("<div class='msg'>⚠️ The <u>$library</u> directory is not found</div>");
+			die("<div class='msg'>⚠️ The <u>$library</u> directory does not exist.</div>");
 		}
 		if (!file_exists($tims)) {
 			mkdir($tims, 0755, true);
 		}
 
-		if (isset($_COOKIE['memories'])) {
+		if (date("d-m", filemtime($tims)) === $current_date && count(glob("$tims/*")) !== 0) {
 			showTims($tims);
 		} else {
 
 			array_map('unlink', glob("$tims/*.*"));
-			setcookie('memories', 1, strtotime('today 23:59'), '/');
-
 			$files = rsearch($library, $tims, $ext);
 			foreach ($files as $file) {
 				$exif = @exif_read_data($file);
@@ -110,7 +108,7 @@ $ext = array('jpg', 'jpeg'); // File types to search
 			showTims($tims);
 		}
 		if (count(glob("$tims/*")) === 0) {
-			echo "<div class='msg'>🪣 No photos from the past today</div>";
+			die("<div class='msg'>🪣 No photos from the past today</div>");
 		}
 		?>
 
