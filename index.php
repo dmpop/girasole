@@ -81,10 +81,10 @@ $ext = array('jpg', 'jpeg'); // File types to search
 		}
 
 		if (!extension_loaded('exif')) {
-			die("<h2 style='color: red;'>The exif PHP extension is missing</h2>");
+			die("<div class='msg'>⚠️ The PHP exif extension is missing</div>");
 		}
 		if (!file_exists($library)) {
-			die("<h2 style='color: red;'>The <u>$library</u> directory is not found</h2>");
+			die("<div class='msg'>⚠️ The <u>$library</u> directory is not found</div>");
 		}
 		if (!file_exists($tims)) {
 			mkdir($tims, 0755, true);
@@ -110,7 +110,7 @@ $ext = array('jpg', 'jpeg'); // File types to search
 			showTims($tims);
 		}
 		if (count(glob("$tims/*")) === 0) {
-			echo '<h2>No photos from the past today :-( </h2>';
+			echo "<div class='msg'>🪣 No photos from the past today</div>";
 		}
 		?>
 
