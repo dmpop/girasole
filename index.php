@@ -5,6 +5,7 @@ $library = "photos"; // Relative or absolute path to the photo library root
 $tims = "tims"; // Directory for saving tims
 $excluded = "tims"; // Directory to exclude from search (useful for excluding thumbnails)
 $ext = array('jpg', 'jpeg'); // File types to search
+$footer = "This is <a href='https://github.com/dmpop/memories'>Memories</a>. Read the <a href='https://gumroad.com/l/linux-photography'>Linux Photography</a> book."; // Footer
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +29,6 @@ $ext = array('jpg', 'jpeg'); // File types to search
 	<div class="c">
 		<img style="height: 3em; margin-right: 0.5em;" src="favicon.svg" alt="logo" />
 		<h1 style="margin-left: 0.19em; letter-spacing: 0.3em; margin-top: 0em; color: #5f8dd3;">Memories</h1>
-		<hr style="margin-bottom: 1.5em;">
 
 		<?php
 		$current_date = date('d-m');
@@ -66,6 +66,7 @@ $ext = array('jpg', 'jpeg'); // File types to search
 
 		function showTims($tims)
 		{
+			echo '<hr style="margin-bottom: 1.5em;">';
 			$files = glob($tims . DIRECTORY_SEPARATOR . '*.{jpg,jpeg,JPG,JPEG}', GLOB_BRACE);
 			foreach ($files as $tim) {
 				$txt = $tim . ".txt";
@@ -82,10 +83,10 @@ $ext = array('jpg', 'jpeg'); // File types to search
 		}
 
 		if (!extension_loaded('exif')) {
-			die("<div class='msg'>⚠️ The PHP exif extension is missing</div>");
+			die("<div>⚠️ The PHP exif extension is missing</div>");
 		}
 		if (!file_exists($library)) {
-			die("<div class='msg'>⚠️ The <u>$library</u> directory does not exist.</div>");
+			die("<div>⚠️ The <u>$library</u> directory does not exist</div>");
 		}
 		if (!file_exists($tims)) {
 			mkdir($tims, 0755, true);
@@ -109,12 +110,10 @@ $ext = array('jpg', 'jpeg'); // File types to search
 			showTims($tims);
 		}
 		if (count(glob("$tims/*")) === 0) {
-			die("<div class='msg'>🪣 No photos from the past today</div>");
+			die("<div>🪣 No photos from the past today</div>");
 		}
 		?>
-
-		<hr style="margin-top: 1em;">
-		<div class="footer">This is <a href="https://github.com/dmpop/memories">Memories</a>. Read the <a href="https://gumroad.com/l/linux-photography">Linux Photography</a> book.</div>
+		<div class="footer"><?php echo $footer; ?></div>
 	</div>
 </body>
 

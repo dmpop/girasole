@@ -168,12 +168,6 @@ div.footer {
   background: #3f3f3f;
 }
 
-div.msg {
-  border-radius: 9px;
-  border: 2px solid #ffbb00;
-  padding: 1em;
-}
-
 @font-face {
   font-family: "Barlow";
   font-weight: 400;
