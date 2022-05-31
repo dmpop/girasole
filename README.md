@@ -1,6 +1,6 @@
 # Memories
 
-Memories is a simple PHP-base application that can find and show photos you took on today's date in the past.
+Memories is a simple PHP-based application that can find and show photos you took on today's date in the past.
 
 ## Dependencies
 
