@@ -27,9 +27,7 @@ $footer = "This is <a href='https://github.com/dmpop/memories'>Memories</a>. Rea
 
 <body>
 	<div class="c">
-		<img style="height: 3em; margin-right: 0.5em;" src="favicon.svg" alt="logo" />
-		<h1 style="margin-left: 0.19em; letter-spacing: 0.3em; margin-top: 0em; color: #5f8dd3;">Memories</h1>
-
+		<img style="height: 5em; margin-bottom: 1.5em;" src="favicon.svg" alt="logo" />
 		<?php
 		$current_date = date('d-m');
 
@@ -66,7 +64,6 @@ $footer = "This is <a href='https://github.com/dmpop/memories'>Memories</a>. Rea
 
 		function showTims($tims)
 		{
-			echo '<hr style="margin-bottom: 1.5em;">';
 			$files = glob($tims . DIRECTORY_SEPARATOR . '*.{jpg,jpeg,JPG,JPEG}', GLOB_BRACE);
 			foreach ($files as $tim) {
 				$txt = $tim . ".txt";
@@ -104,7 +101,7 @@ $footer = "This is <a href='https://github.com/dmpop/memories'>Memories</a>. Rea
 				if ($current_date == $dm) {
 					$tim = $tims . DIRECTORY_SEPARATOR . basename($file);
 					createTim($file, $tim, 800);
-					file_put_contents($tims . DIRECTORY_SEPARATOR . basename($tim) . ".txt", date("l, Y, G:s", strtotime($exif['DateTimeOriginal'])) . "\n" . $exif['COMMENT']['0'], FILE_APPEND | LOCK_EX);
+					file_put_contents($tims . DIRECTORY_SEPARATOR . basename($tim) . ".txt", date("Y / l / G:s", strtotime($exif['DateTimeOriginal'])) . "\n" . $exif['COMMENT']['0'], FILE_APPEND | LOCK_EX);
 				}
 			}
 			showTims($tims);

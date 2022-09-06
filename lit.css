@@ -36,7 +36,7 @@
 .card:focus,
 hr {
   outline: 0;
-  border: 1px dashed #5f8dd3;
+  border: 1px dashed #e3c75d;
 }
 
 .card,
@@ -68,58 +68,59 @@ a:hover {
   max-width: 60em;
   padding: 1em;
   margin: auto;
-  font: 1em/1.6 "Barlow";
-  color: #fff;
+  font: 1em/1.6 "Karla";
+  color: #e3c75d;
+  letter-spacing: 0.1em;
   text-align: center;
 }
 
 h6 {
   font-size: 1em;
-  font-family: "Barlow";
+  font-family: "Karla";
 }
 
 h5 {
   font-size: 1em;
-  font-family: "Barlow";
+  font-family: "Karla";
 }
 
 h3 {
   text-transform: uppercase;
   letter-spacing: 0.1em;
   font-size: 1.1em;
-  font-family: "Barlow";
+  font-family: "Karla";
 }
 
 h4 {
   font-size: 1em;
-  font-family: "Barlow";
+  font-family: "Karla";
 }
 
 h2 {
   text-transform: uppercase;
   letter-spacing: 0.1em;
   font-size: 1.5em;
-  font-family: "Barlow";
-  color: #5f8dd3;
+  font-family: "Karla";
+  color: #c0cb79;
 }
 
 h1 {
   text-transform: uppercase;
   letter-spacing: 0.1em;
   font-size: 2em;
-  font-family: "Barlow";
-  color: #5f8dd3;
+  font-family: "Karla";
+  color: #e3c75d;
 }
 
 a {
-  color: #5f8dd3;
+  color: #e2783e;
   text-decoration: none;
 }
 
 .btn.primary {
   color: #fff;
-  background: #5f8dd3;
-  border: solid #5f8dd3;
+  background: #e2783e;
+  border: solid #e2783e;
 }
 
 td,
@@ -136,9 +137,9 @@ th {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   background: #fff;
-  border: solid #5f8dd3;
+  border: solid #e2783e;
   font-size: 0.7em;
-  font-family: "Barlow";
+  font-family: "Karla";
 }
 
 body {
@@ -146,18 +147,18 @@ body {
 }
 
 strong {
-  font-family: "Barlow", sans-serif;
+  font-family: "Karla", sans-serif;
 }
 
 em {
-  font-family: "Barlow", sans-serif;
+  font-family: "Karla", sans-serif;
   font-style: italic;
 }
 
 div.footer {
   line-height: 2em;
   text-align: center;
-  font-family: "Barlow", sans-serif;
+  font-family: "Karla", sans-serif;
   font-size: 0.9em;
   position: fixed;
   left: 0px;
@@ -168,8 +169,14 @@ div.footer {
   background: #3f3f3f;
 }
 
+div.msg {
+  border-radius: 9px;
+  border: 2px solid #ffbb00;
+  padding: 1em;
+}
+
 @font-face {
-  font-family: "Barlow";
+  font-family: "Karla";
   font-weight: 400;
-  src: url("Barlow-Regular.woff2") format("woff2");
+  src: url("Karla-Regular.woff") format("woff");
 }
