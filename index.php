@@ -31,22 +31,6 @@ $footer = "This is <a href='https://github.com/dmpop/memories'>Memories</a>. Rea
 		<?php
 		$current_date = date('d-m');
 
-		function createTim($original, $tim, $timWidth)
-		{
-			$img = @imagecreatefromjpeg($original);
-			if (!$img) return false;
-			$width = imagesx($img);
-			$height = imagesy($img);
-			$new_width	= $timWidth;
-			$new_height = floor($height * ($timWidth / $width));
-			$tmp_img = imagecreatetruecolor($new_width, $new_height);
-			imagecopyresampled($tmp_img, $img, 0, 0, 0, 0, $new_width, $new_height, $width, $height);
-			$ok = @imagejpeg($tmp_img, $tim);
-			imagedestroy($img);
-			imagedestroy($tmp_img);
-			return $ok;
-		}
-
 		function rsearch($dir, $excluded, $pattern_array)
 		{
 			$return = array();
@@ -64,18 +48,12 @@ $footer = "This is <a href='https://github.com/dmpop/memories'>Memories</a>. Rea
 
 		function showTims($tims)
 		{
-			$files = glob($tims . DIRECTORY_SEPARATOR . '*.{jpg,jpeg,JPG,JPEG}', GLOB_BRACE);
+			$files = glob("$tims/*");
 			foreach ($files as $tim) {
-				$txt = $tim . ".txt";
-				if (file_exists($txt)) {
-					$h2 = file($txt)[0];
-					echo "<h2>" . $h2 . "</h2>";
-				}
-				echo '<p><img src="' . $tim . '" alt="" /></p>';
-				if (file_exists($txt)) {
-					$comment = file($txt)[1];
-					echo '<p style="margin-bottom: 2em;">' . $comment . '</p>';
-				}
+				$exif = @exif_read_data($tim);
+				echo "<h2>" . date("Y / l / G:s", strtotime($exif['DateTimeOriginal'])) . "</h2>";
+				echo '<p><img loading="lazy" src="' . $tim . '" alt="" /></p>';
+				echo '<p style="margin-bottom: 2em;">' . $exif['COMMENT']['0'] . '</p>';
 			}
 		}
 
@@ -99,9 +77,7 @@ $footer = "This is <a href='https://github.com/dmpop/memories'>Memories</a>. Rea
 				$exif = @exif_read_data($file);
 				$dm = date("d-m", strtotime($exif['DateTimeOriginal']));
 				if ($current_date == $dm) {
-					$tim = $tims . DIRECTORY_SEPARATOR . basename($file);
-					createTim($file, $tim, 800);
-					file_put_contents($tims . DIRECTORY_SEPARATOR . basename($tim) . ".txt", date("Y / l / G:s", strtotime($exif['DateTimeOriginal'])) . "\n" . $exif['COMMENT']['0'], FILE_APPEND | LOCK_EX);
+					copy($file, $tims . DIRECTORY_SEPARATOR . basename($file));
 				}
 			}
 			showTims($tims);
