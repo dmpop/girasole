@@ -1,10 +1,10 @@
 [Unit]
-Description=Memories
+Description=Girasole
 Wants=syslog.service
 
 [Service]
 Restart=always
-ExecStart=/usr/bin/php -S 0.0.0.0:7000 -t /path/to/memories
+ExecStart=/usr/bin/php -S 0.0.0.0:7000 -t /path/to/girasole
 ExecStop=/usr/bin/kill -HUP $MAINPID
 
 [Install]

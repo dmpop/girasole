@@ -1,6 +1,6 @@
-# Memories
+# Girasole
 
-Memories is a simple PHP-based application that can find and show photos you took on today's date in the past.
+Girasole is a simple PHP-based application that can find and show photos you took on today's date in the past.
 
 ## Dependencies
 
@@ -8,17 +8,17 @@ Memories is a simple PHP-based application that can find and show photos you too
 - php-exif library
 - Git (optional)
 
-The [Linux Photography](https://gumroad.com/l/linux-photography) book provides detailed information on using Memories. Get your copy at [Google Play Store](https://play.google.com/store/books/details/Dmitri_Popov_Linux_Photography?id=cO70CwAAQBAJ) or [Gumroad](https://gumroad.com/l/linux-photography).
+The [Linux Photography](https://gumroad.com/l/linux-photography) book provides detailed information on using Girasole. Get your copy at [Google Play Store](https://play.google.com/store/books/details/Dmitri_Popov_Linux_Photography?id=cO70CwAAQBAJ) or [Gumroad](https://gumroad.com/l/linux-photography).
 
 <img src="https://tokyoma.de/bookcovers/linux-photography.jpg" title="Linux Photography book" width="200"/>
 
 ## Problems?
 
-Please report bugs and issues in the [Issues](https://github.com/dmpop/memories/issues) section.
+Please report bugs and issues in the [Issues](https://github.com/dmpop/girasole/issues) section.
 
 ## Contribute
 
-If you've found a bug or have a suggestion for improvement, open an issue in the [Issues](https://github.com/dmpop/memories/issues) section.
+If you've found a bug or have a suggestion for improvement, open an issue in the [Issues](https://github.com/dmpop/girasole/issues) section.
 
 To add a new feature or fix issues yourself, follow the following steps.
 

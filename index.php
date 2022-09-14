@@ -5,7 +5,7 @@ $library = "photos"; // Relative or absolute path to the photo library root
 $tims = "tims"; // Directory for saving tims
 $excluded = "tims"; // Directory to exclude from search (useful for excluding thumbnails)
 $ext = array('jpg', 'jpeg'); // File types to search
-$footer = "This is <a href='https://github.com/dmpop/memories'>Memories</a>. Read the <a href='https://gumroad.com/l/linux-photography'>Linux Photography</a> book."; // Footer
+$footer = "This is <a href='https://github.com/dmpop/girasole'>Girasole</a>. Read the <a href='https://gumroad.com/l/linux-photography'>Linux Photography</a> book."; // Footer
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +14,7 @@ $footer = "This is <a href='https://github.com/dmpop/memories'>Memories</a>. Rea
 <!--
     Author: Dmitri Popov, dmpop@linux.com
     License: GPLv3 https://www.gnu.org/licenses/gpl-3.0.txt
-    Source code: https://github.com/dmpop/memories
+    Source code: https://github.com/dmpop/girasole
 -->
 
 <head>
@@ -22,7 +22,7 @@ $footer = "This is <a href='https://github.com/dmpop/memories'>Memories</a>. Rea
 	<meta name="viewport" content="width=device-width">
 	<link rel="shortcut icon" href="favicon.png" />
 	<link rel="stylesheet" href="lit.css" type="text/css">
-	<title>Memories</title>
+	<title>Girasole</title>
 </head>
 
 <body>
