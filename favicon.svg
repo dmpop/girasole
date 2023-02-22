@@ -9,7 +9,7 @@
    id="svg8"
    inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
    sodipodi:docname="favicon.svg"
-   inkscape:export-filename="/home/dmpop/favicon.png"
+   inkscape:export-filename="/home/dmpop/Documents/girasole/favicon.png"
    inkscape:export-xdpi="96"
    inkscape:export-ydpi="96"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
@@ -20,7 +20,19 @@
    xmlns:cc="http://creativecommons.org/ns#"
    xmlns:dc="http://purl.org/dc/elements/1.1/">
   <defs
-     id="defs2" />
+     id="defs2">
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath932">
+      <ellipse
+         style="opacity:0.5;fill:#e6e6e6;stroke-width:3.02658"
+         id="circle934"
+         cx="-426.65125"
+         cy="300.5527"
+         rx="62.838554"
+         ry="66.145836" />
+    </clipPath>
+  </defs>
   <sodipodi:namedview
      id="base"
      pagecolor="#ffffff"
@@ -35,8 +47,8 @@
      inkscape:current-layer="layer1"
      showgrid="false"
      units="px"
-     inkscape:window-width="1712"
-     inkscape:window-height="895"
+     inkscape:window-width="1920"
+     inkscape:window-height="1012"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
@@ -53,7 +65,6 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -64,7 +75,8 @@
      transform="translate(610.80953,-119.06298)">
     <g
        id="g10206"
-       transform="matrix(1.0526314,0,0,1,-93.969673,-113.75639)">
+       transform="matrix(1.0526314,0,0,1,-93.969673,-113.75639)"
+       clip-path="url(#clipPath932)">
       <rect
          style="fill:#e2783e;fill-opacity:1;stroke-width:2.5343"
          id="rect935-3-6-7-6"
